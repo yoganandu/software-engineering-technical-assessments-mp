@@ -18,3 +18,11 @@ The product owner has asked us to use to add some additional features to the app
 
 - The party, candidate name and votes fields need to be stepped through individually. Can we make each row a single element which contains all the relevant information?
 - The table headings (Party, Candidate, Votes) aren't very meaningful for VoiceOver users, could we hide them?
+- 
+### 4) This UI doesn't work well with TouchTargets. What can we do to improve touch target according to WCAG?
+
+-  The candidate name and votes fields to be checked to align to international standards on touch target-so it helps user with cerebral palsy to access the app. How to enable appropriate touch target?
+
+### 5) This UI doesn't work well with Error Messages. How to improve error elerts?
+
+- If internet is not connected or server is down, send alert via app to user when app is active. How to get this message displayed (and get it disappeared when internet is back) with right colour background and close button?
