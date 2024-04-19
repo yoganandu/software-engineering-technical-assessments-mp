@@ -24,7 +24,7 @@ Notes:
 
 ## Assessment Process
 
-In the assessment process, after making changes in your github repository, we will ask you to share your working environment and talk through the following with us in a recorded video (shared via youtube link may be):
+In the assessment process, after making changes in your github repository, we will ask you to share your working environment and talk through the following with us in a recorded video (shared via youtube link (uploaded as 'PRIVATE and reachable only via link' may be):
 
 - What does this system do? What are its key features?
 - New Feature requests! - The election product team have some feature requests that we would like you to take a look at. They can be found in `Tasks.md`.
