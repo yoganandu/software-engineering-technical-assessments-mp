@@ -5,4 +5,5 @@ data class ResultUiState(
     val id: String,
     val name: String,
     val votes: String,
+    val isWinner: Boolean,
 )

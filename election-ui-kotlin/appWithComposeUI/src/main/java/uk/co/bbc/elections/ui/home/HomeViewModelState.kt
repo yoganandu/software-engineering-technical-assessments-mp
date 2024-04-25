@@ -11,12 +11,13 @@ data class HomeViewModelState(
 ) {
 
     fun toUiState() = HomeUiState(
-        results = results.map { result ->
+        results = results.sortedByDescending { it.votes }.map { result ->
             ResultUiState(
                 result.party,
                 result.candidateId.toString(),
                 candidates[result.candidateId]?.name?:"",
                 result.votes.toString(),
+                countingComplete && result.votes == results.maxOf { it.votes }
             )
         },
         loading = loading,
