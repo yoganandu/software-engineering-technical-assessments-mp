@@ -28,10 +28,14 @@ class HomeViewModel(
     fun refresh() = viewModelScope.launch {
         viewModelState.update { it.copy(loading = true) }
         val latestResults = resultsService.latestResults()
+        val candidates = resultsService.getCandidates().associateBy {
+            it.id
+        }
         viewModelState.update { state ->
             state.copy(
                 loading = false,
                 results = latestResults.results,
+                candidates = candidates,
                 countingComplete = latestResults.isComplete
             )
         }

@@ -52,8 +52,8 @@ fun Home(uiState: HomeUiState, refresh: () -> Unit) = Scaffold(
 private fun HomePreview() = Home(
     HomeUiState(
         results = listOf(
-            ResultUiState("Adder party", "1", "1056"),
-            ResultUiState("b", "2", "100")
+            ResultUiState("Adder party", "1", "Candidate 1", "1056"),
+            ResultUiState("b", "2","Candidate 2", "100")
         ),
         loading = false,
         isComplete = false

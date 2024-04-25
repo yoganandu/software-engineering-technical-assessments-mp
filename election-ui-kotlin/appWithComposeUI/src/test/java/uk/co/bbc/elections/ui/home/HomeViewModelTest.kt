@@ -7,6 +7,7 @@ import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import uk.co.bbc.elections.MainCoroutineRule
+import uk.co.bbc.elections.api.Candidate
 import uk.co.bbc.elections.api.Result
 import uk.co.bbc.elections.api.Results
 
@@ -70,11 +71,18 @@ class HomeViewModelTest {
         )
         runCurrent()
 
+        stubResultsService.dispatchCandidates(
+            listOf(
+                Candidate(0, "Candidate 0"),
+                Candidate(1, "Candidate 1")
+            )
+        )
+        runCurrent()
         // Then
         assertEquals(
             listOf(
-                ResultUiState("Party0", "0", "123"),
-                ResultUiState("Party1", "1", "234")
+                ResultUiState("Party0", "0", "Candidate 0", "123"),
+                ResultUiState("Party1", "1", "Candidate 1", "234")
             ),
             viewModel.uiState.value.results
         )

@@ -17,5 +17,17 @@ interface ResultsService {
     @Throws(ResultsRepositoryException::class)
     suspend fun latestResults(): Results
 
+    /**
+     * Fetch all the candidates details.
+     *
+     *
+     * @return A list containing candidates details.
+     *
+     * @throws ResultsRepositoryException if there was an error retrieving or
+     *                                    parsing the results data from the back end.
+     */
+    @Throws(ResultsRepositoryException::class)
+    suspend fun getCandidates(): List<Candidate>
+
 }
 
