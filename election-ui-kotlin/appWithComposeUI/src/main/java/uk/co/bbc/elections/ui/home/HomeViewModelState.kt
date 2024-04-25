@@ -16,6 +16,7 @@ data class HomeViewModelState(
                 result.votes.toString()
             )
         },
-        loading = loading
+        loading = loading,
+        isComplete = countingComplete
     )
 }

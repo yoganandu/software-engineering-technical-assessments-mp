@@ -27,11 +27,13 @@ fun Home(viewModel: HomeViewModel) {
 @Composable
 fun Home(uiState: HomeUiState, refresh: () -> Unit) = Scaffold(
     floatingActionButton = {
-        FloatingActionButton(onClick = { if (!uiState.loading) refresh() }) {
-            Icon(
-                imageVector = Icons.Filled.Refresh,
-                contentDescription = stringResource(id = R.string.refresh)
-            )
+        if(!uiState.isComplete){
+            FloatingActionButton(onClick = { if (!uiState.loading) refresh() }) {
+                Icon(
+                    imageVector = Icons.Filled.Refresh,
+                    contentDescription = stringResource(id = R.string.refresh)
+                )
+            }
         }
     }
 ) { innerPadding ->
@@ -53,6 +55,7 @@ private fun HomePreview() = Home(
             ResultUiState("Adder party", "1", "1056"),
             ResultUiState("b", "2", "100")
         ),
-        loading = false
+        loading = false,
+        isComplete = false
     )
 ) {}
