@@ -21,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import uk.co.bbc.elections.R
 
 @Composable
@@ -64,7 +65,7 @@ fun Home(uiState: HomeUiState, accessibilityState: Boolean = false, refresh: () 
 ) { innerPadding ->
     LazyColumn(
         Modifier
-            .padding(innerPadding)
+            .padding(8.dp)
             .fillMaxSize()
     ) {
         if(!accessibilityState){
