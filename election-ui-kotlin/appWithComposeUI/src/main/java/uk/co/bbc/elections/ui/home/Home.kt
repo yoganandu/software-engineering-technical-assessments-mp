@@ -21,11 +21,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import kotlinx.coroutines.flow.asStateFlow
 import uk.co.bbc.elections.R
 
 @Composable
-fun Home(viewModel: HomeViewModel) {
+fun Home(viewModel: HomeViewModel, homeAndroidViewModel: HomeAndroidViewModel) {
     val uiState by viewModel.uiState.collectAsState()
+    val accessebilityState by homeAndroidViewModel.talkbackState.collectAsState()
     val (showResultComplete, setShowResultComplete) = remember { mutableStateOf(false) }
     LaunchedEffect(key1 = uiState.isComplete){
         setShowResultComplete(uiState.isComplete)
@@ -35,11 +37,11 @@ fun Home(viewModel: HomeViewModel) {
             setShowResultComplete(false)
         }
     }
-    Home(uiState) { viewModel.refresh() }
+    Home(uiState, accessebilityState) { viewModel.refresh() }
 }
 
 @Composable
-fun Home(uiState: HomeUiState, refresh: () -> Unit) = Scaffold(
+fun Home(uiState: HomeUiState, accessibilityState: Boolean = false, refresh: () -> Unit) = Scaffold(
     floatingActionButton = {
         if(!uiState.isComplete){
             FloatingActionButton(onClick = { if (!uiState.loading) refresh() }) {
@@ -56,7 +58,9 @@ fun Home(uiState: HomeUiState, refresh: () -> Unit) = Scaffold(
             .padding(innerPadding)
             .fillMaxSize()
     ) {
-        item { ResultHeader() }
+        if(!accessibilityState){
+            item { ResultHeader() }
+        }
         items(uiState.results) { Result(it) }
     }
 }

@@ -6,4 +6,6 @@
     <string name="results_header_votes">Votes</string>
     <string name="counting_complete">Result counting complete</string>
     <string name="dialog_ok">Ok</string>
+    <string name="candidate_results">%1$s from %2$s has secured %3$s votes</string>
+    <string name="winner_candidate_results">%1$s from %2$s has secured %3$s votes and he is the winner</string>
 </resources>
