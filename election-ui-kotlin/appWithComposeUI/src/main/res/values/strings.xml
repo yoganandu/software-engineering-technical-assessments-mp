@@ -8,4 +8,5 @@
     <string name="dialog_ok">Ok</string>
     <string name="candidate_results">%1$s from %2$s has secured %3$s votes</string>
     <string name="winner_candidate_results">%1$s from %2$s has secured %3$s votes and he is the winner</string>
+    <string name="no_network_message">No internet connection please chceck you device network settings</string>
 </resources>

@@ -20,11 +20,7 @@ class HomeViewModel(
             SharingStarted.Eagerly,
             viewModelState.value.toUiState()
         )
-
-    init {
-        refresh()
-    }
-
+    
     fun refresh() = viewModelScope.launch {
         viewModelState.update { it.copy(loading = true) }
         val latestResults = resultsService.latestResults()

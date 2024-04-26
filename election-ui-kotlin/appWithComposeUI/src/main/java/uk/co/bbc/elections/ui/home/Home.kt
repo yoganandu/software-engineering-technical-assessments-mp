@@ -21,20 +21,29 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import kotlinx.coroutines.flow.asStateFlow
 import uk.co.bbc.elections.R
 
 @Composable
 fun Home(viewModel: HomeViewModel, homeAndroidViewModel: HomeAndroidViewModel) {
     val uiState by viewModel.uiState.collectAsState()
     val accessebilityState by homeAndroidViewModel.talkbackState.collectAsState()
+    val networkState by homeAndroidViewModel.networkState.collectAsState()
     val (showResultComplete, setShowResultComplete) = remember { mutableStateOf(false) }
+    val (showNetworkConnection, setShowNetworkConnection) = remember { mutableStateOf(false) }
     LaunchedEffect(key1 = uiState.isComplete){
         setShowResultComplete(uiState.isComplete)
     }
+    LaunchedEffect(key1 = networkState){
+        setShowNetworkConnection(!networkState)
+    }
     if(showResultComplete){
-        NotifyResultCompletion(){
+        InfoAlertDialog(stringResource(id = R.string.counting_complete)){
             setShowResultComplete(false)
+        }
+    }
+    if(showNetworkConnection){
+        InfoAlertDialog(stringResource(id = R.string.no_network_message)){
+            setShowNetworkConnection(false)
         }
     }
     Home(uiState, accessebilityState) { viewModel.refresh() }
@@ -81,9 +90,9 @@ private fun HomePreview() = Home(
 
 @Preview
 @Composable
-fun NotifyResultCompletion(onOkClick: (() -> Unit)? = null){
+fun InfoAlertDialog(text: String = "Some text", onOkClick: (() -> Unit)? = null){
     AlertDialog(onDismissRequest = { /*TODO*/ },
-        title = {Text(stringResource(id = R.string.counting_complete))},
+        title = {Text(text)},
         confirmButton = {
             TextButton(onClick = {onOkClick?.invoke()}) {
                 Text(stringResource(id = R.string.dialog_ok))
